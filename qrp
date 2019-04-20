@@ -1,0 +1,2 @@
+#!/usr/bin/env lua
+dofile("/Users/cass/Code/Projects/Software/qrp/main.lua")

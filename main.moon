@@ -1,6 +1,6 @@
 --luarocks install rxi-json-lua
 json    = require "rxi-json-lua"
-log     = require "log.log"
+log     = require("log.log")
 
 url = "dat://rt.cass.si"
 path = "/Users/cass/Code/Projects/Sites/rt.cass.si/posts"
