@@ -13,5 +13,6 @@ cd qrp
 luarocks install moonscript rxi-log-lua
 moonc main.moon
 chmod +x qrp
+ln -s log /usr/local/share/lua/5.3/log
 ln -s /Users/$whoami/Code/Software/qrp/qrp /usr/local/bin/qrp
 ```
