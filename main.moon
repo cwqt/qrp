@@ -1,6 +1,5 @@
 --luarocks install rxi-json-lua
 json    = require "rxi-json-lua"
-log     = require("log.log")
 
 url = "dat://rt.cass.si"
 path = "/Users/cass/Code/Projects/Sites/rt.cass.si/posts"
@@ -34,7 +33,7 @@ getopt = (arg, options) ->
   return tab
 
 listPosts = () ->
-  f = io.popen("ls -1 | wc -l | tr -d ' ' | tr -d '\n'", "r")
+  f = io.popen("cd #{path} && ls -1 | wc -l | tr -d ' ' | tr -d '\n'", "r")
   s = f\read("*a")
   f\close()
   print("#{s} posts.")
@@ -46,7 +45,7 @@ listPosts = () ->
 
 deletePost = (id) ->
   os.execute("rm #{path}/#{id}.json")
-  log.info("Deleted #{id}.json")
+  print("Deleted #{id}.json")
 
 printHelp = () ->
   s = ""
@@ -62,7 +61,7 @@ printHelp = () ->
   print s
 
 insertImage = (url) ->
-  log.info("Downloading #{url}")
+  print("Downloading #{url}")
   os.execute("wget #{url} -P #{imgpath} -q --show-progress")
   f = io.popen("basename #{url} | tr -d '\n'", "r")
   imageName = f\read("*a")
@@ -85,7 +84,7 @@ postMessage = (msg) ->
 
   x = json.encode(t)
   os.execute("echo '#{x}' >> #{path}/#{t.timestamp}.json")
-  log.info("Made post id:#{t.timestamp}")
+  print("Made post id:#{t.timestamp}")
 
 cmd = {
   ["m"]: (msg) -> postMessage(msg)
